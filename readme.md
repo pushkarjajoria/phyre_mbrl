@@ -18,4 +18,4 @@ For a in-depth understanding of the benchmark, please go through the official [r
 
 #### Part-1 Predicting the model dynamics
 
-[Sequence Prediction](/images/rnn_sequence_prediction.jpg)
+![Sequence Prediction](/images/rnn_sequence_prediction.jpg)
