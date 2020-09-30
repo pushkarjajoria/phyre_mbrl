@@ -22,26 +22,26 @@ For a in-depth understanding of the benchmark, please go through the official [r
 
 #### Overall Algorithm
 
-Main Algorithm
+	Main Algorithm
 
-• Divide the available puzzles into train(1600) dev(400) test(500).
-• Get the cache for each of these puzzles.
-	(Cache = 100k actions and their result on each of these puzzles)
+	• Divide the available puzzles into train(1600) dev(400) test(500).
+	• Get the cache for each of these puzzles.
+		(Cache = 100k actions and their result on each of these puzzles)
 
-for each epoch:
-	• create a randomly shuffled index list
-	for each index in this randomly_shuffled_list:
-		• increment the batch size
-		• get the action status for this puzzle from cache
-		• Get 9 random valid actions from this cache (Omitting invalid actions)
-		• Simulate these actions on the environment to generate the target image sequence and append this to the dataset
-		• Get one random solving action from the cache and append it to the dataset after simulating it on the environment.
-		• To make all of the sequence of images of the same timestep, repeat the final image in the sequence
-		• process_images to make them 100x100 grayscale
-
-		if current_batch_size >= BATCH_SIZE:
-			• get list of [X, Y, Y_reward, action]
-			• Shuffle the dataset
-			• train on this batch size
-			• store the losses for use later
+	for each epoch:
+		• create a randomly shuffled index list
+		for each index in this randomly_shuffled_list:
+			• increment the batch size
+			• get the action status for this puzzle from cache
+			• Get 9 random valid actions from this cache (Omitting invalid actions)
+			• Simulate these actions on the environment to generate the target image sequence and append this to the dataset
+			• Get one random solving action from the cache and append it to the dataset after simulating it on the environment.
+			• To make all of the sequence of images of the same timestep, repeat the final image in the sequence
+			• process_images to make them 100x100 grayscale
+			
+			if current_batch_size >= BATCH_SIZE:
+				• get list of [X, Y, Y_reward, action]
+				• Shuffle the dataset
+				• train on this batch size
+				• store the losses for use later
 
