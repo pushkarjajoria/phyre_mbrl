@@ -9,10 +9,28 @@ import random
 import phyre
 import cv2
 
+"""=======CONSTANTS========"""
+# Util Consts
 CURRENT_FOLDER = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
 OUTPUT_FOLDER = 'output/'
 OUTPUT_DIR = OUTPUT_FOLDER + CURRENT_FOLDER + '/'
+
+# Training Consts
+TOTAL_BATCH_SIZE = 1
+MAX_EPOCH = 1000
+LEARNING_RATE = 0.001
+
+# Model Consts
 IMAGE_SHAPE = 64
+DECONV_SHAPE = 1
+DECONV_CHANNELS = 1024
+CHANNELS = 1
+RNN_INPUT_SIZE = 1024
+HIDDEN_SIZE = 1024
+NUM_LAYERS = 1
+HORIZON = 17
+"""========================"""
+
 
 def display_img(img, grayscale=True):
     if grayscale:
@@ -32,8 +50,11 @@ def save_imgs(prediction, target, epoch, img_shape, save_id):
 
     if not os.path.exists(OUTPUT_DIR + "epoch"+str(epoch)):
         os.mkdir(OUTPUT_DIR + "epoch"+str(epoch))
-    target_dir = OUTPUT_DIR + "epoch"+str(epoch) + '/target'
-    prediction_dir = OUTPUT_DIR + "epoch"+str(epoch) + '/prediction'
+    if not os.path.exists(OUTPUT_DIR + "epoch"+str(epoch) + "/" + save_id):
+        os.mkdir(OUTPUT_DIR + "epoch"+str(epoch) + "/" + save_id)
+        PATH = OUTPUT_DIR + "epoch"+str(epoch) + "/" + save_id
+    target_dir = PATH + '/target'
+    prediction_dir = PATH + '/prediction'
     if not os.path.exists(target_dir):
         os.mkdir(target_dir)
     if not os.path.exists(prediction_dir):
