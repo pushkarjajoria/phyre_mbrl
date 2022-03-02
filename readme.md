@@ -1,7 +1,5 @@
 ## Solving physical reasoning tasks using Model-Based Reinforcement learning
 
-This is an ongoing project in which I try to build a Model-based RL agent which is able to solve physical reasoning problem.
-
 I am using the [Phyre](https://phyre.ai/) benchmark from Facebook ai.
 
 ### Phyre 
